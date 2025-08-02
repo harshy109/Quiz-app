@@ -49,7 +49,8 @@ const questions = [
 const questionElement = document.getElementById('question-element');
 const answerDiv = document.getElementById('answers');
 const nextButton = document.getElementById('nxt-btn');
-const quiz = document.getElementById('quiz');
+const questionDiv = document.getElementById('question');
+
 
 let questionIndex = 0;
 let score = 0;
@@ -121,6 +122,8 @@ nextButton.addEventListener("click", function(){
         handleQuestions();
     }
     else{
+        questionDiv.style.textAlign = "left";
+        questionDiv.style.paddingLeft = "50px";
         startQuiz();
     }
 })
@@ -128,7 +131,7 @@ nextButton.addEventListener("click", function(){
 function displayScore(){
     resetState();
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-    const questionDiv = document.getElementById('question');
+    
     questionDiv.style.textAlign = "center";
     questionDiv.style.paddingLeft = "0px";
     if(score == questions.length){
@@ -138,6 +141,7 @@ function displayScore(){
     }
 
     nextButton.innerHTML = "Play again";
+    
     nextButton.style.display='block';
 }
 
