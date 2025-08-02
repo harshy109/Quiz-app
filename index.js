@@ -28,9 +28,9 @@ const questions = [
     }
 ]
 
-let questionElement = document.getElementsByClassName('question-element');
-let answerDiv = document.getElementsByClassName('answers');
-let nextButton = document.getElementsByClassName('nxt-btn');
+const questionElement = document.getElementById('question-element');
+const answerDiv = document.getElementById('answers');
+const nextButton = document.getElementById('nxt-btn');
 
 let questionIndex = 0;
 let score = 0;
@@ -46,14 +46,30 @@ function showQuestion(){
     resetState();
     let currentQuestion = questions[questionIndex];
     let questionNo = questionIndex + 1;
-    questionElement.innerHTML = questionNo +". " + currentQuestion.question;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
     
     currentQuestion.answers.forEach(answer =>{
-        let button = document.createElement('button');
+        const button = document.createElement("button");
         button.innerHTML = answer.text;
-        button.classList.add(btn);
+        button.classList.add("btn");
         answerDiv.appendChild(button);
+        if(answer.correct){
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener('click', selectAnswer);
     });
+
+}
+
+function selectAnswer(e){
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === "true";
+    if(isCorrect){
+        selectedBtn.classList.add("correct");
+    }
+    else{
+        selectedBtn.classList.add("incorrect");
+    }
 }
 
 function resetState(){

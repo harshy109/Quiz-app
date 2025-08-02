@@ -8,12 +8,7 @@ body{
     margin: 0px;
     background-color: #060642;
 }
-.app{
-    height: 100vh;
-    display: flex;
-    padding: 10px;
-    margin: auto;
-}
+
 .container{
     width: 90%;
     max-width: 600px;
@@ -34,17 +29,17 @@ body{
     width: 90%;
 }
 
-.question-element{
-    display: flex;
-    width: 90%;
-    justify-content: flex-start;
+#question{
+    width: 100%;
+    text-align: start;
     color: #000;
     font-size: 18px;
     font-weight: 600;
     padding-bottom: 25px;
+    padding-left: 50px;
 }
 
-.answers{
+#answers{
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -70,7 +65,7 @@ body{
     background-color: #b6b6db;
 }
 
-.nxt-btn{
+#nxt-btn{
     width: 150px;
     height: 40px;
     color: white;
@@ -80,4 +75,12 @@ body{
     padding:5px;
     font-size: 16px;
     margin: 20px auto;
+}
+
+.correct{
+    background-color: #42dc63;
+}
+
+.incorrect{
+    background-color: #ea4a4a;
 }
