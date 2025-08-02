@@ -9,12 +9,30 @@ const questions = [
         ]
     },
     {
-        question : "Who is Prime Minister of India?",
-        answers : [
-            {text : "Manmohan Singh", correct : false},
-            {text : "Narendra Modi", correct : true},
-            {text : "Draupati Murmu", correct : false},
-            {text : "Rajkovind Singh", correct : false},
+        question: "Which planet is known as the 'Red Planet'?",
+        answers: [
+            { text: "Mars", correct: true },
+            { text: "Jupiter", correct: false },
+            { text: "Saturn", correct: false },
+            { text: "Venus", correct: false }
+        ]
+    },
+     {
+        question: "Which element has the chemical symbol 'O'?",
+        answers: [
+            { text: "Osmium", correct: false },
+            { text: "Oxygen", correct: true },
+            { text: "Oganesson", correct: false },
+            { text: "Oxide", correct: false }
+        ]
+    },
+    {
+    question: "In which year did India gain independence from Britain?",
+        answers: [
+            { text: "1942", correct: false },
+            { text: "1947", correct: true },
+            { text: "1950", correct: false },
+            { text: "1930", correct: false }
         ]
     },
     {
@@ -110,6 +128,14 @@ nextButton.addEventListener("click", function(){
 function displayScore(){
     resetState();
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    const questionDiv = document.getElementById('question');
+    questionDiv.style.textAlign = "center";
+    questionDiv.style.paddingLeft = "0px";
+    if(score == questions.length){
+        answerDiv.innerHTML = '🎉';
+        answerDiv.style.fontSize = "50px";
+        answerDiv.style.textAlign = "center";
+    }
 
     nextButton.innerHTML = "Play again";
     nextButton.style.display='block';
