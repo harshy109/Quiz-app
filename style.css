@@ -61,10 +61,13 @@ body{
     font-size: 16px;
 }
 
-.btn:hover{
+.btn:hover:not([disabled])
+{
     background-color: #b6b6db;
 }
-
+.btn:disabled{
+    cursor: no-drop;
+}
 #nxt-btn{
     width: 150px;
     height: 40px;
