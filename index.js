@@ -31,6 +31,7 @@ const questions = [
 const questionElement = document.getElementById('question-element');
 const answerDiv = document.getElementById('answers');
 const nextButton = document.getElementById('nxt-btn');
+const quiz = document.getElementById('quiz');
 
 let questionIndex = 0;
 let score = 0;
@@ -53,9 +54,9 @@ function showQuestion(){
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerDiv.appendChild(button);
-        if(answer.correct){
+        // if(answer.correct){
             button.dataset.correct = answer.correct;
-        }
+        // }
         button.addEventListener('click', selectAnswer);
     });
 
@@ -64,42 +65,61 @@ function showQuestion(){
 function selectAnswer(e){
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
+    //mark incorrect and correct
     if(isCorrect){
         selectedBtn.classList.add("correct");
+        score = score + 1;
     }
     else{
         selectedBtn.classList.add("incorrect");
     }
+
+    //mark correct
+    const buttons = answerDiv.querySelectorAll('button');
+    buttons.forEach(button =>{
+        if(button.dataset.correct === "true"){
+            button.classList.add("correct");
+        }
+
+        button.disabled = true;
+    });
+
+    nextButton.style.display = "block";
+}
+
+function handleQuestions(){
+    questionIndex = questionIndex + 1;
+    if(questionIndex < questions.length){
+        showQuestion();
+    }
+    else{
+        displayScore();
+    }
+}
+
+nextButton.addEventListener("click", function(){
+    
+    if(questionIndex < questions.length){
+        handleQuestions();
+    }
+    else{
+        startQuiz();
+    }
+})
+
+function displayScore(){
+    resetState();
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+
+    nextButton.innerHTML = "Play again";
+    nextButton.style.display='block';
 }
 
 function resetState(){
-    nextButton.style.display = "None";
+    nextButton.style.display = "none";
     while(answerDiv.firstChild){
         answerDiv.removeChild(answerDiv.firstChild);
     }
 }
 startQuiz();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function checkAnswer(e){
-//     //if else conditon
-//     //if option matches answer -> chnage color of tab to green
-//     //else change wrong option to red and correct to green
-//     //add number of correct answers
-//     //to display result at the end of quiz
-//     if(e.target.innerHTML == "Blue Whale"){
-//         e.target.style.backgroundColor = "green"
-//     }
-// }
